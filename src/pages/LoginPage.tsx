@@ -65,13 +65,13 @@ const LoginPage: React.FC = () => {
           <Button variant="primary" type="submit" className="mt-4 w-100">
             Entrar
           </Button>
-          <Button
+          {/* <Button
             variant="link"
             className="mt-3 w-100 text-primary"
             onClick={() => setShowRegister(true)}
           >
             Registrar-se
-          </Button>
+          </Button> */}
         </Form>
       </Card>
 
