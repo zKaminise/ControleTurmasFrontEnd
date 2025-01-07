@@ -216,7 +216,7 @@ const Dashboard: React.FC = () => {
           </Modal.Header>
           <Modal.Body>
             <Form.Select onChange={(e) => setSelectedTurma(e.target.value)}>
-              <option value="">Todas turmas</option>
+              <option value="">Selecione a Turma</option>
               <option value="TURMA_1A">Turma 1A</option>
               <option value="TURMA_1B">Turma 1B</option>
               <option value="TURMA_1C">Turma 1C</option>
