@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Form, Button, Modal, Container, Card } from 'react-bootstrap';
 import api from '../services/api';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginPage: React.FC = () => {
   const [showRegister, setShowRegister] = useState(false);
@@ -15,7 +17,8 @@ const LoginPage: React.FC = () => {
       localStorage.setItem('token', response.data.token);
       window.location.href = '/dashboard';
     } catch (error) {
-      alert('Erro no login. Verifique suas credenciais.');
+      console.error("Erro ao fazer login:", error);
+      toast.error('Erro no login. Verifique suas credenciais.');
     }
   };
 
@@ -23,17 +26,18 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
     try {
       await api.post('/auth/register', registerData);
-      alert('Usuário registrado com sucesso!');
+      toast.success('Usuário registrado com sucesso!');
       setShowRegister(false);
     } catch (error) {
-      alert('Erro ao registrar usuário.');
+      console.error("Erro ao registrar usuario:", error);
+      toast.error('Erro ao registrar usuário.');
     }
   };
 
   return (
     <Container
       fluid
-      className="d-flex justify-content-center align-items-center vh-100 bg-light" style={{ backgroundImage: 'url(./src/assets/bkgLoginImage.jpg)', backgroundSize: 'cover'}}
+      className="d-flex justify-content-center align-items-center vh-100 bg-light" style={{ backgroundImage: 'url(/bkgLoginImage.jpg)', backgroundSize: 'cover'}}
     >
       <Card className="shadow-lg p-4" style={{ width: '400px', borderRadius: '10px' }}>
         <h2 className="text-center mb-4 text-primary">Login</h2>

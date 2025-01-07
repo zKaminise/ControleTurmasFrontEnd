@@ -23,7 +23,8 @@ const ModalAluno: React.FC<ModalAlunoProps> = ({
     if (!nome.trim()) return;
     try {
       const response = await fetch(
-        `http://localhost:8080/alunos/check-nome?nome=${nome}`
+        `https://controledeturmas-production.up.railway.app/alunos/check-nome?nome=${nome}`
+        // `http://localhost:8080/alunos/check-nome?nome=${nome}`
       );
       const data = await response.json();
       if (data) {
