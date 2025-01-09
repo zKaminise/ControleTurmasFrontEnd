@@ -80,15 +80,23 @@ const Dashboard: React.FC = () => {
 
   const handleSave = async () => {
     if (isCreating) {
-      await api.post("/alunos", selectedAluno);
+      await api.post("/alunos", {
+        ...selectedAluno,
+        alunoPodeIrSozinho: selectedAluno.alunoPodeIrSozinho || false, // Garante que o valor será enviado
+      });
       toast.success("Aluno cadastrado com sucesso!");
     } else {
-      await api.put(`/alunos/${selectedAluno.id}`, selectedAluno);
+      await api.put(`/alunos/${selectedAluno.id}`, {
+        ...selectedAluno,
+        alunoPodeIrSozinho: selectedAluno.alunoPodeIrSozinho || false, // Garante que o valor será enviado
+      });
       toast.success("Dados do aluno alterados com sucesso!");
     }
     setShowModal(false);
     fetchAlunos();
   };
+  
+  
 
   return (
     <>
@@ -171,6 +179,7 @@ const Dashboard: React.FC = () => {
               <th>Telefone</th>
               <th>Transporte Escolar</th>
               <th>Responsáveis</th>
+              <th>Embora Sozinho?</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -188,6 +197,7 @@ const Dashboard: React.FC = () => {
                     </div>
                   ))}
                 </td>
+                <td>{aluno.alunoPodeIrSozinho ? "Sim" : "Não"}</td>
                 <td>
                   <Button
                     variant="info"

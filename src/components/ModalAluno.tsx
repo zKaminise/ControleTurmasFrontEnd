@@ -23,8 +23,8 @@ const ModalAluno: React.FC<ModalAlunoProps> = ({
     if (!nome.trim()) return;
     try {
       const response = await fetch(
-        `https://controledeturmas-production.up.railway.app/alunos/check-nome?nome=${nome}`
-        // `http://localhost:8080/alunos/check-nome?nome=${nome}`
+        // `https://controledeturmas-production.up.railway.app/alunos/check-nome?nome=${nome}`
+        `http://localhost:8080/alunos/check-nome?nome=${nome}`
       );
       const data = await response.json();
       if (data) {
@@ -164,6 +164,18 @@ const ModalAluno: React.FC<ModalAlunoProps> = ({
               <option value="Turma 9B">Turma 9B</option>
               <option value="Turma 9C">Turma 9C</option>
             </Form.Select>
+          </Form.Group>
+
+                    {/* CheckBox - Aluno pode ir embora sozinho */}
+                    <Form.Group className="mb-4" controlId="formIrSozinho">
+            <Form.Check
+              type="checkbox"
+              label="Aluno pode ir embora sozinho"
+              checked={aluno.alunoPodeIrSozinho || false}
+              onChange={(e) =>
+                setAluno({ ...aluno, alunoPodeIrSozinho: e.target.checked })
+              }
+            />
           </Form.Group>
 
           <h4>Responsáveis</h4>
